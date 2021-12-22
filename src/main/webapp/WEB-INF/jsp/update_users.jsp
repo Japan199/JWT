@@ -27,7 +27,12 @@
                     <td>Password: </td>
                     <td><form:input path="password" value="${updateUser.password}"/></td>
                 </tr>
-                   
+                
+                <tr>
+                    <td>Role: </td>
+                    <td><form:input path="role" value="${updateUser.role}"/></td>
+                </tr>
+                
                 <tr>
                     <td colspan="2"><input type="submit" value="Save"></td>
                 </tr>                    

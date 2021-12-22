@@ -20,6 +20,21 @@ public class DAOUser {
 	
 	
 	
+	
+
+	public DAOUser() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public DAOUser(long id, String username, String password, String role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.role = role;
+	}
+
 	public long getId() {
 		return id;
 	}

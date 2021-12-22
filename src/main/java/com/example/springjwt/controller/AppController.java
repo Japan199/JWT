@@ -3,7 +3,7 @@ package com.example.springjwt.controller;
 
 import java.security.Principal;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -43,6 +43,7 @@ public class AppController {
 	
 	@GetMapping("/")
 	public String viewHomePage() {
+		
 		
 		return "index";
 		
@@ -90,7 +91,7 @@ public class AppController {
 	public ModelAndView updateUser(@RequestParam long id) {
 		
 		ModelAndView mav = new ModelAndView("update_users");
-	    DAOUser user = userService.get(id);
+	    Optional<DAOUser> user = userService.getUserById(id);
 	    mav.addObject("user", user);
 	 
 	    return mav;
