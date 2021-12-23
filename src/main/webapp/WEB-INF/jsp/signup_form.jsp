@@ -11,7 +11,7 @@
 
 * {
 	box-sizing: border-box;
-	margin: -3px;
+	margin: 0;
 	padding: 0;	
 	font-family: Raleway, sans-serif;
 }
@@ -100,7 +100,7 @@ body {
 }
 
 .login__field {
-	padding: 20px 0px;	
+	padding: 10px 0px;	
 	position: relative;	
 }
 
@@ -188,7 +188,7 @@ body {
 	</style>
 	
 	</head>
-	<body>
+	<body style="overflow: hidden;">
 		<div class="container">
 	<div class="screen">
 		<div class="screen__content">

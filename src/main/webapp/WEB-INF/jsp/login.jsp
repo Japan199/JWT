@@ -112,7 +112,7 @@ body {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;
-	padding: 10px;
+	padding: 0px;
 	padding-left: 24px;
 	font-weight: 700;
 	width: 75%;
@@ -186,7 +186,7 @@ body {
 	</style>
 	
 	</head>
-	<body>
+	<body style="overflow: hidden;">
 		<div class="container">
 	<div class="screen">
 		<div class="screen__content">
