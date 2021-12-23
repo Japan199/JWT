@@ -112,7 +112,7 @@ body {
 	border: none;
 	border-bottom: 2px solid #D1D1D4;
 	background: none;
-	padding: 0px;
+	padding: 10px;
 	padding-left: 24px;
 	font-weight: 700;
 	width: 75%;

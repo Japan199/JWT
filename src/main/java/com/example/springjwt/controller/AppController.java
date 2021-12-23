@@ -66,7 +66,9 @@ public class AppController {
 	
 	
 	@GetMapping("/home")
-	public String showHomePage() {
+	public String showHomePage( Principal principal , Model model1) {
+
+		model1.addAttribute("username", principal.getName());
 		return "home";
 	}
 	

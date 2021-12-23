@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div style="margin-left:25%; padding:1px 16px;">
-        <h2>Update User</h2>
+        <h2 style="text-align: center; color: gray; font-variant: small-caps;">Update User</h2>
         <form:form action="/saveUpdated" method="post" modelAttribute="user">
             <table class="table table-striped table-bordered"">
                 <tr>

@@ -87,10 +87,17 @@
   bottom: 0;
   width: 100%;
 }
+
+.sidebar .nav-links .username{
+  position: absolute;
+  bottom: 7%;
+  width: 100%;
+}
+
 .home-section{
   position: relative;
   background: #f5f5f5;
-  min-height: 100vh;
+  
   width: calc(100% - 240px);
   left: 240px;
   transition: all 0.5s ease;
@@ -433,7 +440,6 @@ nav .profile-details i{
      </style>
    </head>
 <body>
-<nav >
   <div class="sidebar">
     <div class="logo-details">
       <i  class='bx bxl-spring-boot'></i>
@@ -441,7 +447,7 @@ nav .profile-details i{
     </div>
       <ul class="nav-links">
         <li>
-          <a href="/home" class="active">
+          <a href="/home">
             <i class='bx bx-grid-alt' ></i>
             <span class="links_name">Home</span>
           </a>
@@ -453,7 +459,12 @@ nav .profile-details i{
           </a>
         </li>
        
-
+		<li class="username">
+         <a href="/home" >
+            <i class='bx bxs-user' ></i>
+            <span class="links_name">${username} </span>
+          </a>
+        </li>
         <li class="log_out">
           <a href="/logout">
             <i class='bx bx-log-out'></i>
@@ -462,8 +473,7 @@ nav .profile-details i{
         </li>
       </ul>
   </div>
- </nav>
- 
+  
 
   
  
