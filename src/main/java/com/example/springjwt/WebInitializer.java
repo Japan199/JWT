@@ -2,7 +2,7 @@ package com.example.springjwt;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.example.springjwt.WebAppConfig;
-
+//this class is our initializer class which states where to go first when website starts
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

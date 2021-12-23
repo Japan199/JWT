@@ -1,346 +1,477 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>SparcoEnergy</title>
-	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-	
-</head>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+     <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+  position: fixed;
+  height: 100%;
+  width: 240px;
+  background: #0A2558;
+  transition: all 0.5s ease;
+}
+.sidebar.active{
+  width: 60px;
+}
+.sidebar .logo-details{
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+.sidebar .logo-details i{
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 60px;
+  text-align: center
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
+.sidebar .nav-links{
+  margin-top: 10px;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  height: 50px;
+}
+.sidebar .nav-links li a{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active{
+  background: #081D45;
+}
+.sidebar .nav-links li a:hover{
+  background: #081D45;
+}
+.sidebar .nav-links li i{
+  min-width: 60px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+}
+.sidebar .nav-links li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.sidebar .nav-links .log_out{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.home-section{
+  position: relative;
+  background: #f5f5f5;
+  min-height: 100vh;
+  width: calc(100% - 240px);
+  left: 240px;
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section{
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav{
+  display: flex;
+  justify-content: space-between;
+  height: 80px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: calc(100% - 240px);
+  left: 240px;
+  z-index: 100;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section nav{
+  left: 60px;
+  width: calc(100% - 60px);
+}
+.home-section nav .sidebar-button{
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 500;
+}
+nav .sidebar-button i{
+  font-size: 35px;
+  margin-right: 10px;
+}
+.home-section nav .search-box{
+  position: relative;
+  height: 50px;
+  max-width: 550px;
+  width: 100%;
+  margin: 0 20px;
+}
+nav .search-box input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+}
+nav .search-box .bx-search{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: #2697FF;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 4px;
+  line-height: 40px;
+  text-align: center;
+  color: #fff;
+  font-size: 22px;
+  transition: all 0.4 ease;
+}
+.home-section nav .profile-details{
+  display: flex;
+  align-items: center;
+  background: #F5F6FA;
+  border: 2px solid #EFEEF1;
+  border-radius: 6px;
+  height: 50px;
+  min-width: 190px;
+  padding: 0 15px 0 2px;
+}
+nav .profile-details img{
+  height: 40px;
+  width: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+nav .profile-details .admin_name{
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 10px;
+  white-space: nowrap;
+}
+nav .profile-details i{
+  font-size: 25px;
+  color: #333;
+}
+.home-section .home-content{
+  position: relative;
+  padding-top: 104px;
+}
+.home-content .overview-boxes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0 20px;
+  margin-bottom: 26px;
+}
+.overview-boxes .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 4 - 15px);
+  background: #fff;
+  padding: 15px 14px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+.overview-boxes .box-topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .box .number{
+  display: inline-block;
+  font-size: 35px;
+  margin-top: -6px;
+  font-weight: 500;
+}
+.home-content .box .indicator{
+  display: flex;
+  align-items: center;
+}
+.home-content .box .indicator i{
+  height: 20px;
+  width: 20px;
+  background: #8FDACB;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 5px;
+}
+.box .indicator i.down{
+  background: #e87d88;
+}
+.home-content .box .indicator .text{
+  font-size: 12px;
+}
+.home-content .box .cart{
+  display: inline-block;
+  font-size: 32px;
+  height: 50px;
+  width: 50px;
+  background: #cce5ff;
+  line-height: 50px;
+  text-align: center;
+  color: #66b0ff;
+  border-radius: 12px;
+  margin: -15px 0 0 6px;
+}
+.home-content .box .cart.two{
+   color: #2BD47D;
+   background: #C0F2D8;
+ }
+.home-content .box .cart.three{
+   color: #ffc233;
+   background: #ffe8b3;
+ }
+.home-content .box .cart.four{
+   color: #e05260;
+   background: #f7d4d7;
+ }
+.home-content .total-order{
+  font-size: 20px;
+  font-weight: 500;
+}
+.home-content .sales-boxes{
+  display: flex;
+  justify-content: space-between;
+  /* padding: 0 20px; */
+}
+
+/* left box */
+.home-content .sales-boxes .recent-sales{
+  width: 65%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.home-content .sales-boxes .sales-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sales-boxes .box .title{
+  font-size: 24px;
+  font-weight: 500;
+  /* margin-bottom: 10px; */
+}
+.sales-boxes .sales-details li.topic{
+  font-size: 20px;
+  font-weight: 500;
+}
+.sales-boxes .sales-details li{
+  list-style: none;
+  margin: 8px 0;
+}
+.sales-boxes .sales-details li a{
+  font-size: 18px;
+  color: #333;
+  font-size: 400;
+  text-decoration: none;
+}
+.sales-boxes .box .button{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.sales-boxes .box .button a{
+  color: #fff;
+  background: #0A2558;
+  padding: 4px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sales-boxes .box .button a:hover{
+  background:  #0d3073;
+}
+
+/* Right box */
+.home-content .sales-boxes .top-sales{
+  width: 35%;
+  background: #fff;
+  padding: 20px 30px;
+  margin: 0 20px 0 0;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.sales-boxes .top-sales li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.sales-boxes .top-sales li a img{
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-right: 10px;
+  background: #333;
+}
+.sales-boxes .top-sales li a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.sales-boxes .top-sales li .product,
+.price{
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+}
+/* Responsive Media Query */
+@media (max-width: 1240px) {
+  .sidebar{
+    width: 60px;
+  }
+  .sidebar.active{
+    width: 220px;
+  }
+  .home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section{
+    /* width: calc(100% - 220px); */
+    overflow: hidden;
+    left: 220px;
+  }
+  .home-section nav{
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav{
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
+@media (max-width: 1150px) {
+  .home-content .sales-boxes{
+    flex-direction: column;
+  }
+  .home-content .sales-boxes .box{
+    width: 100%;
+    overflow-x: scroll;
+    margin-bottom: 30px;
+  }
+  .home-content .sales-boxes .top-sales{
+    margin: 0;
+  }
+}
+@media (max-width: 1000px) {
+  .overview-boxes .box{
+    width: calc(100% / 2 - 15px);
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 700px) {
+  nav .sidebar-button .dashboard,
+  nav .profile-details .admin_name,
+  nav .profile-details i{
+    display: none;
+  }
+  .home-section nav .profile-details{
+    height: 50px;
+    min-width: 40px;
+  }
+  .home-content .sales-boxes .sales-details{
+    width: 560px;
+  }
+}
+@media (max-width: 550px) {
+  .overview-boxes .box{
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .sidebar.active ~ .home-section nav .profile-details{
+    display: none;
+  }
+}
+     	
+     	
+     </style>
+   </head>
 <body>
-	<div class="container text-center">
-		<div><h1>Welcome to Sparco Energy</h1></div>
-		<div><h3><a href="register" >Register</a></h3></div>
-		<div><h3><a href="login" >Login</a></h3></div>
+<nav >
+  <div class="sidebar">
+    <div class="logo-details">
+      <i  class='bx bxl-spring-boot'></i>
+      <span class="logo_name">JWT</span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="/home" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="list_users">
+            <i class='bx bx-box' ></i>
+            <span class="links_name">All User</span>
+          </a>
+        </li>
+       
+
+        <li class="log_out">
+          <a href="/logout">
+            <i class='bx bx-log-out'></i>
+            <span class="links_name">Log out</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+ </nav>
+ 
+
+  
+ 
+	<div style="margin-left:25%; padding:1px 16px; padding-top: 5%;" >
+		
 	</div>
-	
-	
-	
+ 
 </body>
 </html>
-<!-- <html> -->
-<!-- <head> -->
-<!-- 	<style type="text/css"> -->
-		
-/* 		@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800'); */
 
-/* * { */
-/* 	box-sizing: border-box; */
-/* } */
 
-/* body { */
-/* 	background: #f6f5f7; */
-/* 	display: flex; */
-/* 	justify-content: center; */
-/* 	align-items: center; */
-/* 	flex-direction: column; */
-/* 	font-family: 'Montserrat', sans-serif; */
-/* 	height: 100vh; */
-/* 	margin: -20px 0 50px; */
-/* } */
-
-/* h1 { */
-/* 	font-weight: bold; */
-/* 	margin: 0; */
-/* } */
-
-/* h2 { */
-/* 	text-align: center; */
-/* } */
-
-/* p { */
-/* 	font-size: 14px; */
-/* 	font-weight: 100; */
-/* 	line-height: 20px; */
-/* 	letter-spacing: 0.5px; */
-/* 	margin: 20px 0 30px; */
-/* } */
-
-/* span { */
-/* 	font-size: 12px; */
-/* } */
-
-/* a { */
-/* 	color: #333; */
-/* 	font-size: 14px; */
-/* 	text-decoration: none; */
-/* 	margin: 15px 0; */
-/* } */
-
-/* button { */
-/* 	border-radius: 20px; */
-/* 	border: 1px solid #FF4B2B; */
-/* 	background-color: #FF4B2B; */
-/* 	color: #FFFFFF; */
-/* 	font-size: 12px; */
-/* 	font-weight: bold; */
-/* 	padding: 12px 45px; */
-/* 	letter-spacing: 1px; */
-/* 	text-transform: uppercase; */
-/* 	transition: transform 80ms ease-in; */
-/* } */
-
-/* button:active { */
-/* 	transform: scale(0.95); */
-/* } */
-
-/* button:focus { */
-/* 	outline: none; */
-/* } */
-
-/* button.ghost { */
-/* 	background-color: transparent; */
-/* 	border-color: #FFFFFF; */
-/* } */
-
-/* form { */
-/* 	background-color: #FFFFFF; */
-/* 	display: flex; */
-/* 	align-items: center; */
-/* 	justify-content: center; */
-/* 	flex-direction: column; */
-/* 	padding: 0 50px; */
-/* 	height: 100%; */
-/* 	text-align: center; */
-/* } */
-
-/* input { */
-/* 	background-color: #eee; */
-/* 	border: none; */
-/* 	padding: 12px 15px; */
-/* 	margin: 8px 0; */
-/* 	width: 100%; */
-/* } */
-
-/* .container { */
-/* 	background-color: #fff; */
-/* 	border-radius: 10px; */
-/*   	box-shadow: 0 14px 28px rgba(0,0,0,0.25),  */
-/* 			0 10px 10px rgba(0,0,0,0.22); */
-/* 	position: relative; */
-/* 	overflow: hidden; */
-/* 	width: 768px; */
-/* 	max-width: 100%; */
-/* 	min-height: 480px; */
-/* } */
-
-/* .form-container { */
-/* 	position: absolute; */
-/* 	top: 0; */
-/* 	height: 100%; */
-/* 	transition: all 0.6s ease-in-out; */
-/* } */
-
-/* .sign-in-container { */
-/* 	left: 0; */
-/* 	width: 50%; */
-/* 	z-index: 2; */
-/* } */
-
-/* .container.right-panel-active .sign-in-container { */
-/* 	transform: translateX(100%); */
-/* } */
-
-/* .sign-up-container { */
-/* 	left: 0; */
-/* 	width: 50%; */
-/* 	opacity: 0; */
-/* 	z-index: 1; */
-/* } */
-
-/* .container.right-panel-active .sign-up-container { */
-/* 	transform: translateX(100%); */
-/* 	opacity: 1; */
-/* 	z-index: 5; */
-/* 	animation: show 0.6s; */
-/* } */
-
-/* @keyframes show { */
-/* 	0%, 49.99% { */
-/* 		opacity: 0; */
-/* 		z-index: 1; */
-/* 	} */
-	
-/* 	50%, 100% { */
-/* 		opacity: 1; */
-/* 		z-index: 5; */
-/* 	} */
-/* } */
-
-/* .overlay-container { */
-/* 	position: absolute; */
-/* 	top: 0; */
-/* 	left: 50%; */
-/* 	width: 50%; */
-/* 	height: 100%; */
-/* 	overflow: hidden; */
-/* 	transition: transform 0.6s ease-in-out; */
-/* 	z-index: 100; */
-/* } */
-
-/* .container.right-panel-active .overlay-container{ */
-/* 	transform: translateX(-100%); */
-/* } */
-
-/* .overlay { */
-/* 	background: #FF416C; */
-/* 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); */
-/* 	background: linear-gradient(to right, #FF4B2B, #FF416C); */
-/* 	background-repeat: no-repeat; */
-/* 	background-size: cover; */
-/* 	background-position: 0 0; */
-/* 	color: #FFFFFF; */
-/* 	position: relative; */
-/* 	left: -100%; */
-/* 	height: 100%; */
-/* 	width: 200%; */
-/*   	transform: translateX(0); */
-/* 	transition: transform 0.6s ease-in-out; */
-/* } */
-
-/* .container.right-panel-active .overlay { */
-/*   	transform: translateX(50%); */
-/* } */
-
-/* .overlay-panel { */
-/* 	position: absolute; */
-/* 	display: flex; */
-/* 	align-items: center; */
-/* 	justify-content: center; */
-/* 	flex-direction: column; */
-/* 	padding: 0 40px; */
-/* 	text-align: center; */
-/* 	top: 0; */
-/* 	height: 100%; */
-/* 	width: 50%; */
-/* 	transform: translateX(0); */
-/* 	transition: transform 0.6s ease-in-out; */
-/* } */
-
-/* .overlay-left { */
-/* 	transform: translateX(-20%); */
-/* } */
-
-/* .container.right-panel-active .overlay-left { */
-/* 	transform: translateX(0); */
-/* } */
-
-/* .overlay-right { */
-/* 	right: 0; */
-/* 	transform: translateX(0); */
-/* } */
-
-/* .container.right-panel-active .overlay-right { */
-/* 	transform: translateX(20%); */
-/* } */
-
-/* .social-container { */
-/* 	margin: 20px 0; */
-/* } */
-
-/* .social-container a { */
-/* 	border: 1px solid #DDDDDD; */
-/* 	border-radius: 50%; */
-/* 	display: inline-flex; */
-/* 	justify-content: center; */
-/* 	align-items: center; */
-/* 	margin: 0 5px; */
-/* 	height: 40px; */
-/* 	width: 40px; */
-/* } */
-
-/* footer { */
-/*     background-color: #222; */
-/*     color: #fff; */
-/*     font-size: 14px; */
-/*     bottom: 0; */
-/*     position: fixed; */
-/*     left: 0; */
-/*     right: 0; */
-/*     text-align: center; */
-/*     z-index: 999; */
-/* } */
-
-/* footer p { */
-/*     margin: 10px 0; */
-/* } */
-
-/* footer i { */
-/*     color: red; */
-/* } */
-
-/* footer a { */
-/*     color: #3c97bf; */
-/*     text-decoration: none; */
-/* } */
-	
-<!-- 	</style> -->
-	
-<!-- 	<script type="text/javascript"> -->
-		
-// 	const signUpButton = document.getElementById('signUp');
-// 	const signInButton = document.getElementById('signIn');
-// 	const container = document.getElementById('container');
-
-// 	signUpButton.addEventListener('click', () => {
-// 		container.classList.add("right-panel-active");
-// 	});
-
-// 	signInButton.addEventListener('click', () => {
-// 		container.classList.remove("right-panel-active");
-// 	});
-	
-<!-- 	</script> -->
-<!-- </head> -->
-<!-- <body> -->
-<!-- <h2></h2> -->
-<!-- <div class="container" id="container"> -->
-<!-- 	<div class="form-container sign-up-container"> -->
-<!-- 		<form action="registered" method="post" modelAttribute="newlogin"> -->
-<!-- 			<h1>Create Account</h1> -->
-<!-- 			<div class="social-container"> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-<!-- 			</div> -->
-<!-- 			<span>or use your email for registration</span> -->
-<!-- 			<input type="text" placeholder="Name" name="username"/> -->
-			
-<!-- 			<input type="password" placeholder="Password" name="password"/> -->
-<!-- 			<input type="text" placeholder="UserRole" name="role"/> -->
-<!-- 			<button>Sign Up</button> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-<!-- 	<div class="form-container sign-in-container"> -->
-<!-- 		<form action="/authenticate"  method="POST"  modelAttribute="newlogin"> -->
-<!-- 			<h1>Sign in</h1> -->
-<!-- 			<div class="social-container"> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a> -->
-<!-- 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
-<!-- 			</div> -->
-<!-- 			<span>or use your account</span> -->
-<!-- 			<input type="text" placeholder="Email" name="username" /> -->
-<!-- 			<input type="password" placeholder="Password" name="passowrd" /> -->
-<!-- 			<a href="#">Forgot your password?</a> -->
-<!-- 			<button>Sign In</button> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-<!-- 	<div class="overlay-container"> -->
-<!-- 		<div class="overlay"> -->
-<!-- 			<div class="overlay-panel overlay-left"> -->
-<!-- 				<h1>Welcome Back!</h1> -->
-<!-- 				<p>To keep connected with us please login with your personal info</p> -->
-<!-- 				<button class="ghost" id="signIn">Sign In</button> -->
-<!-- 			</div> -->
-<!-- 			<div class="overlay-panel overlay-right"> -->
-<!-- 				<h1>Hello, Friend!</h1> -->
-<!-- 				<p>Enter your personal details and start journey with us</p> -->
-<!-- 				<button class="ghost" id="signUp">Sign Up</button> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-<!-- </div> -->
-<!-- </body> -->
-<!-- </html> -->

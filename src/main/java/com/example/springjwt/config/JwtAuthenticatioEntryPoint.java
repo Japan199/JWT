@@ -17,6 +17,7 @@ import org.springframework.test.annotation.Commit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+// This is our custom jwt authentication entry point class in which if the token time expired we display the message accordingly
 @Component
 public class JwtAuthenticatioEntryPoint implements AuthenticationEntryPoint {
 

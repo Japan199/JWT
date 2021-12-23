@@ -9,7 +9,7 @@
 <title>Update User</title>
 </head>
 <body>
-	<div class="container text-center">
+	<div style="margin-left:25%; padding:1px 16px;">
         <h2>Update User</h2>
         <form:form action="/saveUpdated" method="post" modelAttribute="user">
             <table class="table table-striped table-bordered"">

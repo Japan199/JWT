@@ -47,6 +47,7 @@ public class JwtUtil {
 	}
 	
 	
+	// This method inserts the user details inside the token such as user name role etc
 	public String generateToken(UserDetails userDetails) {
 		Map<String,Object> claims = new HashMap<>();
 		Collection<? extends GrantedAuthority> roles = userDetails.getAuthorities();
@@ -61,7 +62,9 @@ public class JwtUtil {
 		return doGenerateToken(claims, userDetails.getUsername());
 
 	}
-
+	
+	// This method is used to generate the token with our secret key which we have specified in application.properties file
+	// with expiration time.
 	public String doGenerateToken(Map<String, Object> claims, String subject) {
 		// TODO Auto-generated method stub
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
@@ -78,7 +81,7 @@ public class JwtUtil {
 
 	}
 	
-	
+	// This method checks if our jwt token has been tempered or not
 	public boolean validateToken(String authToken) {
 		try {
 			Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(authToken);
@@ -92,16 +95,19 @@ public class JwtUtil {
 	
 	}
 	
+	// this method will return the user name from the token
 	public String getUsernameFromToken(String token) {
 		Claims  claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 		return claims.getSubject();
 	}
 	
+	// This will get roles from token and accordingly grant the permission for the pages which are specified in the 
+	// Springsecurity configuration.
 	public List<SimpleGrantedAuthority> getRolesFromToken(String token){
 		Claims  claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 		List<SimpleGrantedAuthority> roles = null;
 		Boolean isAdmin = claims.get("isAdmin",Boolean.class);
-		Boolean isUser = claims.get("isUSer",Boolean.class);
+		Boolean isUser = claims.get("isUser",Boolean.class);
 		
 		if(isAdmin != null && isAdmin) {
 			roles = Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"));

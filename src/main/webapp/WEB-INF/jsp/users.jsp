@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ include file="home.jsp" %>
+<%@ include file="index.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>All Users</title>
 	
 	<script type="text/javascript">
@@ -30,7 +31,7 @@
 	
 </head>
 <body>
-	<div class="container text-center">
+	<div style="margin-left:25%; padding:1px 16px;" >
 		<div><h1>All Users</h1></div>
 		<div>
 			

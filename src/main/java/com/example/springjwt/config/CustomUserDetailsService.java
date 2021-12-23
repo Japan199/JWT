@@ -16,6 +16,8 @@ import com.example.springjwt.model.DAOUser;
 import com.example.springjwt.model.UserDTO;
 import com.example.springjwt.repository.UserRepository;
 
+
+// This is simple service class which implements UserDetailsService interface and overrides methods of that interface
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -25,6 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder bcryptEncoder;	
 	
+	// This method simply locate the user by their username.
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
@@ -37,6 +40,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		throw new UsernameNotFoundException("User not found with the name " + username);
 	}
 	
+	// This method is used to save the user in the database
 	public DAOUser save(UserDTO user) {
 		DAOUser newUser = new DAOUser();
 		newUser.setUsername(user.getUsername());

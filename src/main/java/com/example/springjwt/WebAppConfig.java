@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-
+// this class is used to load all the jsp pages as well as it scans all the packages
 @Configuration
 @ComponentScan({"com.example.springjwt"})
 public class WebAppConfig {

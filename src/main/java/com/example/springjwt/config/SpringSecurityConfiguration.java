@@ -16,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+
+// This class is our custom security configuration where we have stated what to use as security such as jwt token.
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -51,12 +53,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
-	
+	// This method specifies the permission required for the all urls and all the security which we want.
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
 		http.csrf().disable().
 		authorizeRequests().antMatchers("/admin").hasRole("ADMIN").
-		antMatchers("/user").hasAnyRole("USER","ADMIN").
+		antMatchers("/home").hasAnyRole("USER","ADMIN").
 		antMatchers("/authenticate" , "/register", "/" , "/registered","/login").permitAll().anyRequest().authenticated().
 		and().exceptionHandling().authenticationEntryPoint(authenticatioEntryPoint)
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

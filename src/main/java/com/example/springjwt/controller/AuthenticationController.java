@@ -57,8 +57,9 @@ public class AuthenticationController {
 	
 	public String token;
 	
+	// This method get called when user is logging in it will tell to generate token and accordingly the operations are performed. 
 	@RequestMapping(value = "/authenticate" , method= RequestMethod.POST )
-	public /*ResponseEntity<AuthenticationResponse>*/ void createAuthenticationToken(@ModelAttribute("newlogin") AuthenticationRequest req
+	public  void createAuthenticationToken(@ModelAttribute("newlogin") AuthenticationRequest req
 			, HttpServletResponse httpres) throws Exception{
 		try{
 			
@@ -86,10 +87,7 @@ public class AuthenticationController {
 //		return "redirect:/home"; 
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
-		return ResponseEntity.ok(service.save(user));
-	}
+
 	
 	@RequestMapping(value = "/refreshtoken", method = RequestMethod.GET)
 	public ResponseEntity<?> refreshtoken(HttpServletRequest request) throws Exception {

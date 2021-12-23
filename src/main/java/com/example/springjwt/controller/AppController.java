@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,12 +43,11 @@ public class AppController {
 	private UserService userService;
 	
 	@GetMapping("/")
-	public String viewHomePage() {
-		
-		
-		return "index";
-		
-	}
+	public String viewHomePage(Model model) { 
+		  auth.token="";
+		  model.addAttribute("newlogin",new AuthenticationRequest());  
+		  return "login";
+	  }
 	
 	@GetMapping("/register")
 	public ModelAndView showSignPage() {
@@ -57,9 +57,11 @@ public class AppController {
 	}
 	
 	@PostMapping("/registered")
-	public String registrationSuccess(@ModelAttribute("user")UserDTO user) {
+	public String registrationSuccess(@ModelAttribute("user")UserDTO user , Model model) {
 		service.save(user);
-		return "register_success";
+		auth.token="";
+		model.addAttribute("newlogin",new AuthenticationRequest());  
+		return "login";
 	}
 	
 	
