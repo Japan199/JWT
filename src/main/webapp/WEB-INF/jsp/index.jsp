@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<% response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate"); %>
 
 
 <!DOCTYPE html>
