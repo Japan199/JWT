@@ -5,12 +5,14 @@ package com.example.springjwt.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "employee")
 public class DAOUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	
 	@Column
 	private String username;
 	@Column

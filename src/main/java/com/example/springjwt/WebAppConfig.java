@@ -15,7 +15,7 @@ public class WebAppConfig {
 	
 		vr.setPrefix("/WEB-INF/jsp/");
 		vr.setSuffix(".jsp");
-		
+//		
 		return vr;
 	}
 }

@@ -1,10 +1,8 @@
 package com.example.springjwt.config;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 
-import javax.print.attribute.standard.MediaTray;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +11,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
-import org.springframework.test.annotation.Commit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
